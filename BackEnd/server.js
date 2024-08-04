@@ -4,6 +4,7 @@ const dotenv = require("dotenv").config();
 const app = express();
 const postRoutes = require('./routes/post.routes');
 const avisRoutes = require("./routes/avis.routes"); 
+const authRoutes = require("./routes/auth.routes")
  
 
 
@@ -22,9 +23,12 @@ app.use(express.urlencoded({ extended: false }));
 // ce qui signifie que les objets imbriqués ou les tableaux ne seront pas supportés (seules les paires clé-valeur simples seront analysées).
 // Grâce à cette ligne, req.body contiendra un objet JavaScript représentant les données URL-encodées reçues.
 
+
 app.use('/post', postRoutes);
-// app.use('/postadvice', adviceRoute);*
 app.use("/post/avis", avisRoutes);
+app.use("post/auth", authRoutes);
+
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
